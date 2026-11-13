@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Escriba
+Comment=Del video al texto, con tu GPU
+Exec=@RUTA@/lanzar.sh
+Path=@RUTA@
+Icon=@RUTA@/escriba/iconos/escriba.svg
+Terminal=false
+Categories=AudioVideo;Utility;

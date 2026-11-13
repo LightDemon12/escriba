@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "escriba"
+version = "0.2.0"
+description = "Convierte cualquier video en texto (minutas, apuntes de clase, transcripciones para IA) usando tu GPU NVIDIA."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "escriba/iconos/LICENSE-lucide.txt"]
+authors = [{ name = "Angel Pérez" }]
+keywords = ["transcripcion", "minutas", "apuntes", "whisper", "cuda", "gpu", "video", "markdown", "pyside6"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX :: Linux",
+  "Environment :: GPU :: NVIDIA CUDA",
+  "Natural Language :: Spanish",
+  "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+dependencies = [
+  "faster-whisper>=1.0",
+  "av<17",
+  "python-docx>=1.1",
+  "PySide6-Essentials>=6.6",
+  "nvidia-cublas-cu12; sys_platform == 'linux'",
+  "nvidia-cudnn-cu12==9.*; sys_platform == 'linux'",
+]
+
+[project.optional-dependencies]
+resumen = ["anthropic"]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+escriba = "escriba.gui:main"
+escriba-cli = "escriba.cli:main"
+
+[project.urls]
+Repository = "https://github.com/LightDemon12/escriba"
+Issues = "https://github.com/LightDemon12/escriba/issues"
+
+[tool.setuptools.packages.find]
+include = ["escriba*"]
+
+[tool.setuptools.package-data]
+escriba = ["iconos/*"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
